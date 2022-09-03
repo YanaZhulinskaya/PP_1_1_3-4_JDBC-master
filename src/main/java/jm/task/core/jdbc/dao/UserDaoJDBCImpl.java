@@ -10,7 +10,7 @@ import java.util.List;
 import static jm.task.core.jdbc.util.Util.getConnection;
 
 public class UserDaoJDBCImpl implements UserDao {
-    private final Connection connection = getConnection();
+    
 
     public UserDaoJDBCImpl() {
 
@@ -91,7 +91,8 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void cleanUsersTable() {
         String sql = "DELETE FROM test.users";
-        try (Statement statement = connection.createStatement()) {
+        try (onnection connection = getConnection();
+             Statement statement = connection.createStatement()) {
             statement.executeUpdate(sql);
             System.out.println("Таблица очищена");
         } catch (SQLException e) {
